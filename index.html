@@ -38,7 +38,18 @@ function getChartDate(d) {
     // offset in minutes is converted to milliseconds and subtracted so that chart's x-axis is correct
     return Date.UTC(d.substring(0,4), d.substring(5,7)-1, d.substring(8,10), d.substring(11,13), d.substring(14,16), d.substring(17,19)) - (myOffset * 60000);
 }
+	    
+	 
 
+function SetTemp()
+	    {
+	    var temp = $("#temperatureInput").val();
+    $.post("https://api.thingspeak.com/talkbacks/23603/commands.json", {api_key: "G7SGQ0O6Y91DDWBL",command_string:""+temp}, function(result){
+        $("span").html(result);
+    });
+	 
+	    
+	    }
       // Hide all series, via 'Hide All' button.  Then user can click on serries name in legent to show series of interest.      
 function HideAll(){
   for (var index=0; index<dynamicChart.series.length; index++)  // iterate through each series
@@ -443,6 +454,7 @@ function loadChannelHistory(sentChannelIndex,channelNumber,key,sentFieldList,sen
         <option value="40">40 Loads</option>
         <option value="50">50 Loads</option>
       </select>
+	   <input id="temperatureInput" name="temperatureInput" type="number" max="40" min="1"><button onclick="SetTemp();">SetTemp</button>
       <input id="Update" name="Update" type="checkbox"><span style="font-family: Lucida Grande;">Update
         Chart</span> <span id="Latency" style="font-family: Lucida Grande;">(Latency)</span>
     </div>
