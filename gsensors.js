@@ -62,7 +62,7 @@ function addData(label, data) {
 function startAccelerationSensor()
 {
   
-var accelerometer = new LinearAccelerationSensor({ frequency: 1 });
+var accelerometer = new LinearAccelerationSensor({ frequency: 60 });
  // Start the sensor
  accelerometer.start();
 
