@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Generic Sensors Test</title>
     <script src="gsensors.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   </head>
   <body style="padding: 1rem;">
     <h2 style="color: rosybrown;">Generic Sensors API</h2>
@@ -17,11 +18,7 @@
         <span id="y">0</span>
         <span> z:</span>
         <span id="z">0</span>
-      </p>  
-      <p>
-        <span>Ambient light:</span>      
-        <span id="light">0</span>
-      </p>      
+      </p>       
       <p>
         <span id="error_name"></span>
         <span id="error_message"></span>
@@ -50,6 +47,7 @@
       </p>
       <h2 style="color: rosybrown;">Status:</h2>
       <span id="status"></span>
+      <canvas id="myChart"></canvas>
     </div>
   </body>
 </html>
