@@ -33,8 +33,8 @@ $(function() {
     console.log("Dial1: "+$("#dial1").val());
     console.log("Dial2: "+$("#dial1").val());
 
-    postAttributes($("#dial1Key").val(),{"reading":$("#dial1").val()});
-    postAttributes($("#dial2Key").val(),{"reading":$("#dial2").val()});
+    postAttributes($("#dial1Key").val(),{"reading":parseInt($("#dial1").val())});
+    postAttributes($("#dial2Key").val(),{"reading":parseInt($("#dial2").val())});
   },2000)
 });
 
