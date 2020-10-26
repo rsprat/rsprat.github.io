@@ -2,52 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <script src="jquery.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Generic Sensors Test</title>
-    <script src="gsensors.js" type="module"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="script.js" type="module"></script>
+    <script src="knob.js"></script>
   </head>
-  <body style="padding: 1rem;">
-    <h2 style="color: rosybrown;">Generic Sensors API</h2>
-    <div>
-      <p>
-        <span>Acceleration</span>
-        <span>x:</span>
-        <span id="x">0</span>
-        <span> y:</span>
-        <span id="y">0</span>
-        <span> z:</span>
-        <span id="z">0</span>
-      </p>       
-      <p>
-        <span id="error_name"></span>
-        <span id="error_message"></span>
-      </p>
-      <form>
-        <label for="at">Access Token</label><br />
-        <input type="text" id="at" name="at" /><br />
-        <input type="button" value="Start" id="start" />
-        <input type="button" value="Stop" id="stop" />
-      </form>
-      <p>
-        <a
-          href="https://demo.thingsboard.io:/dashboard/9fa48cb0-975f-11ea-abdf-8161d71780e0?publicId=6b656350-9761-11ea-abdf-8161d71780e0"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Cloud based real time dashboard</a
-        >
-      </p>
-      <p>
-        <a
-          href="https://demo.thingsboard.io:/dashboard/a47f87d0-975f-11ea-abdf-8161d71780e0?publicId=6b656350-9761-11ea-abdf-8161d71780e0"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Edge based real time dashboard</a
-        >
-      </p>
-      <h2 style="color: rosybrown;">Status:</h2>
-      <span id="status"></span>
-      <canvas id="myChart"></canvas>
+  <body >
+    <div><label>Text</label>
+    <input type="text" value="75" class="dial">
+  </div>
+    <div id="elem">
     </div>
+    
   </body>
 </html>

@@ -19,3 +19,10 @@ export const setActivity = function (x, y, z) {
   if (norm > 0.5) return "Moving";
   else return "Still";
 };
+
+
+
+export const postAttributes = function (deviceId,attributes)
+{
+  return makePost(`https://demo.thingsboard.io/api/v1/${deviceId}/attributes`,attributes)
+}
