@@ -1,4 +1,5 @@
 http://anthonyterrien.com/demo/knob/
+<<<<<<< HEAD
 $(function() {
 
   $("#dial1Key").val(localStorage.getItem('dial1Key'));
@@ -22,10 +23,18 @@ $(function() {
 
 
   $("#dial2").knob({
+=======
+
+$(function() {
+
+  
+  var knob1 = $(".dial").knob({
+>>>>>>> 889eece3f33b4d2c8a63538b0c54cb8f6209c58b
     //displayInput:false,
     min:10,
     max:110,
     lineCap:"round",
+<<<<<<< HEAD
   });
 
   window.setInterval(()=>{
@@ -67,3 +76,15 @@ export const postAttributes = function (deviceId,attributes)
 {
   return makePost(`https://demo.thingsboard.io/api/v1/${deviceId}/telemetry`,attributes)
 }
+=======
+    change:function(e){console.log(e)}
+  });
+
+
+
+
+  window.setInterval(()=>{
+    
+  },1000)
+});
+>>>>>>> 889eece3f33b4d2c8a63538b0c54cb8f6209c58b
