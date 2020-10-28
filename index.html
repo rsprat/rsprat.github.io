@@ -39,19 +39,21 @@
 </head>
 
 <body>
+    <p>Device token <input type="text" id="deviceToken"></p>
+    <p>Device ID <input type="text" id="deviceID"></p>
   <div id="postErrorDiv" style="display:none">Can't post data</div>
   <div class="row">
   <div class="column"><label>Temperatura</label>
-    <input type="text" value="75" id="dial1" class="dial">
-    <input type="text" id="dial1Key">
+    <input type="text" value="75" id="temperatureDial" class="dial">    
   </div>
 
   <div class="column"><label>Humedad</label>
-    <input type="text" value="75" id="dial2" class="dial">
-    <input type="text" id="dial2Key">
+    <input type="text" value="75" id="humidityDial" class="dial">
+    
   </div>
-  <div id="elem">
-  </div>
+ 
+</div>
+<div id="alarm" style="margin-top:2em; padding:1em; text-align:center;background-color: red; color: black;">Alarma!
 </div>
 </body>
 

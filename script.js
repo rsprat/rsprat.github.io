@@ -1,19 +1,17 @@
-http://anthonyterrien.com/demo/knob/
-$(function() {
 
-  $("#dial1Key").val(localStorage.getItem('dial1Key'));
-  //"Sv4EoKlQUK4MWejNhjWn";
-  $("#dial2Key").val(localStorage.getItem('dial2Key'));
+$(function() {
+  $("#deviceToken").val(localStorage.getItem('deviceToken'));
+  $("#deviceID").val(localStorage.getItem('deviceID'));
   //"FNZ46IXoM19OynmubEvb";
 
-  $("#dial1Key").change(()=>{
-    localStorage.setItem('dial1Key',$("#dial1Key").val());
+  $("#deviceID").change(()=>{
+    localStorage.setItem('deviceID',$("#deviceID").val());
   });
-  $("#dial2Key").change(()=>{
-    localStorage.setItem('dial2Key',$("#dial2Key").val());
+  $("#deviceToken").change(()=>{
+    localStorage.setItem('deviceToken',$("#deviceToken").val());
   });
   
-  $("#dial1").knob({
+  $("#temperatureDial").knob({
     //displayInput:false,
     min:10,
     max:110,
@@ -21,7 +19,7 @@ $(function() {
   });
 
 
-  $("#dial2").knob({
+  $("#humidityDial").knob({
     //displayInput:false,
     min:10,
     max:110,
@@ -30,11 +28,9 @@ $(function() {
 
   window.setInterval(()=>{
 
-    console.log("Dial1: "+$("#dial1").val());
-    console.log("Dial2: "+$("#dial1").val());
-
-    postAttributes($("#dial1Key").val(),{"temperature":parseInt($("#dial1").val())});
-    postAttributes($("#dial2Key").val(),{"humidity":parseInt($("#dial2").val())});
+    postAttributes($("#deviceID").val(),"temperature",{"value":parseInt($("#temperatureDial").val())});
+    postAttributes($("#deviceID").val(),"humidity",{"value":parseInt($("#humidityDial").val())});
+    getAlarmState();
   },2000)
 });
 
@@ -43,9 +39,11 @@ $(function() {
 // An HTTP POST using Fetch APIs
 export const makePost = function (url, body) {
   fetch(url, {
-    method: "POST",
+    method: "PUT",
+    
     // Handling CORS
     headers: {
+      "Authorization": "Bearer "+$("#deviceToken").val(),
       "Content-type": "application/json",
     },
     body: JSON.stringify(body),
@@ -59,11 +57,32 @@ export const makePost = function (url, body) {
   });
 };
 
+export const getAlarmState = function () {
+  fetch("https://api.allthingstalk.io/device/"+$("#deviceID").val()+"/asset/alarm/state", {
+    method: "GET",
+    mode: 'no-cors',
+    // Handling CORS
+    headers: {
+      "Authorization": "Bearer "+$("#deviceToken").val()
+    },
+  }).then(response => response.json()).then((res)=>{
+    console.log(res.state.value)
+    $("#alarm").css("display",res.state.value==true?"block":"none");
+  })
+  
+  .catch((error)=> {
+    $("#postErrorDiv").css("display","block");
+    console.log("Request failed", error);
+  });
+};
 
 
 
 
-export const postAttributes = function (deviceId,attributes)
+
+export const postAttributes = function (deviceId,sensorName,attributes)
 {
-  return makePost(`https://demo.thingsboard.io/api/v1/${deviceId}/telemetry`,attributes)
+  //https://connect.cloud.kaaiot.com:443/kp1/<app-version-name>/dcx/<endpoint-token>/json
+  return makePost(`https://api.allthingstalk.io/device/${deviceId}/asset/${sensorName}/state`,attributes)
+  
 }
