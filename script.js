@@ -60,7 +60,6 @@ export const makePost = function (url, body) {
 export const getAlarmState = function () {
   fetch("https://api.allthingstalk.io/device/"+$("#deviceID").val()+"/asset/alarm/state", {
     method: "GET",
-    mode: 'no-cors',
     // Handling CORS
     headers: {
       "Authorization": "Bearer "+$("#deviceToken").val()
