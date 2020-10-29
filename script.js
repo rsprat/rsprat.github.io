@@ -30,7 +30,7 @@ $(function() {
 
     postAttributes($("#deviceID").val(),"temperature",{"value":parseInt($("#temperatureDial").val())});
     postAttributes($("#deviceID").val(),"humidity",{"value":parseInt($("#humidityDial").val())});
-    getAlarmState();
+    //getAlarmState();
   },2000)
 });
 
